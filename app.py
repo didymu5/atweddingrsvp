@@ -5,8 +5,8 @@ import time
 
 
 app = Flask(__name__)
-app.debug = True
-app.config['SECRET_KEY'] = '\x1b\x02\xe5\xce\xcd\xc3\x85\x14\xd1=\x04\xddA*E\xe0\xd7\xac\xc35\x10w\x98\x8d'
+# app.debug = True
+# app.config['SECRET_KEY'] = '\x1b\x02\xe5\xce\xcd\xc3\x85\x14\xd1=\x04\xddA*E\xe0\xd7\xac\xc35\x10w\x98\x8d'
 mongo = PyMongo(app)
 
 @app.route('/')
@@ -37,4 +37,4 @@ def days_until():
 
 
 if __name__ == '__main__':
-	app.run(port=9999)
+	app.run()
