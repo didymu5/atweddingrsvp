@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, json, Response
-from flask.ext.pymongo import PyMongo
+# from flask.ext.pymongo import PyMongo
 from datetime import *
 import time
 
@@ -7,7 +7,7 @@ import time
 app = Flask(__name__)
 # app.debug = True
 # app.config['SECRET_KEY'] = '\x1b\x02\xe5\xce\xcd\xc3\x85\x14\xd1=\x04\xddA*E\xe0\xd7\xac\xc35\x10w\x98\x8d'
-mongo = PyMongo(app)
+# mongo = PyMongo(app)
 
 @app.route('/')
 def hello():
