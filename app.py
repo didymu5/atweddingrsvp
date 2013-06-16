@@ -27,6 +27,8 @@ def show_countdown_days(yyyymmdd=None):
 	else:
 		if yyyymmdd == None:
 			return jsonify({'daysleft':days_until()})
+		else:
+			return "no page found"
 
 
 
