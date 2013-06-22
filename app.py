@@ -83,7 +83,7 @@ def send_email():
 		# msg = Message('Hello there', sender=("Angela & Tommy", "tommg.angico@gmail.com"), recipients=['wu.thomas@gmail.com'])
 		# msg.body = "This is the email body"
 		# mail.send(msg)
-		print request['headers']+'..................'
+		# print request['headers']+'..................'
 		return jsonify(msg='it works')
 	print request.mimetype
 
