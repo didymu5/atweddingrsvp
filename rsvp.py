@@ -47,11 +47,11 @@ def hello():
 @support_jsonp
 def show_countdown_days(yyyymmdd=None):
 # curl -i -H "Content-type: application/json" -X POST -d 'firstName=Tommy&lastName=Wu&attending=true' http://localhost:5000/rsvp/
-    content_type = request.headers['Content-Type']
+    content_type = request.headers.get('Content-Type')
     if content_type == 'application/json':
         return jsonify(status=200, daysleft=days_until())
     else:
-        return jsonify(request.headers['Content-Type'])
+        return jsonify(request.headers.get('Content-Type'))
 
 
 @app.route('/rsvp/', methods=['GET','POST'])
