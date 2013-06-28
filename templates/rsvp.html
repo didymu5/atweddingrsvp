@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>RSVP list</title>
+	<meta name="robots" content="noindex">
+
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/foundation/4.2.2/css/foundation.min.css">
+</head>
+<body>
+<h2>A list of who's RSVPed</h2>
+<ul>
+{% for guest in guestList %}
+	<li> {{guest}} </li>
+{% endfor %}
+</ul>
+<div class="large-12 columns">
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Attending?</th>
+      <th>Email</th>
+      <th>Guest of...</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for guest in guestList %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{guest.firstname}}</td>
+      <td>{{guest.lastname}}</td>
+      <td>{% if guest.isAttending %} yes {% else %} no {% endif %}</td>
+      <td>
+      	{{guest.email}}
+      </td>
+      <td>{{ guest.guestOf }} </td>
+      <td>{{ guest.timeStamp.strftime('%D %T') }}</td>
+    </tr>
+   {% endfor %}
+  </tbody></div>
+</table>
+</body>
+</html>

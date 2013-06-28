@@ -1,7 +1,7 @@
 from functools import wraps
-from flask import Flask, jsonify, request, json, Response
+from flask import Flask, jsonify, request, json, Response, Request, render_template
+from pymongo import MongoClient
 
-from flask.ext.pymongo import PyMongo
 from flask.ext.mail import Mail, Message
 # from pymongo import Connection
 
@@ -10,10 +10,15 @@ import time
 
 app = Flask(__name__)
 
-app.config['MONGO_HOST'] = 'localhost'
-app.config['MONGO_DBNAME'] = 'rsvp'
-mongo = PyMongo(app)
-# c = Connection('localhost')
+
+mURI = 'mongodb://wed_us:iloveangela@dharma.mongohq.com:10035/app16186982'
+app.config['SECRET_KEY'] = 'ILOVEYOUangela'
+client = MongoClient(mURI)
+
+db = client.app16186982
+
+collection = db.guests
+
 
 mail=Mail(app)
 
@@ -42,9 +47,6 @@ def support_jsonp(f):
             return f(*args, **kwargs)
     return decorated_function
 
-app.config['SECRET_KEY'] = 'ILOVEYOUangela'
-# mongo = PyMongo(app)
-
 @app.route('/')
 def hello():
     return 'hello my love, Angela'
@@ -55,9 +57,8 @@ def hello():
 @support_jsonp
 def show_countdown_days(yyyymmdd=None):
 # curl -i -H "Content-type: application/json" -X POST -d 'firstName=Tommy&lastName=Wu&attending=true' http://localhost:5000/rsvp/
-    if request.mimetype == 'application/json':
-        if yyyymmdd == None:
-            return jsonify({'status': '200', 'daysleft': days_until()})
+    if request.headers['Accept'] in 'application/json':
+        return jsonify(status=200, daysleft=days_until())
     else:
         # print datetime.datetime.strptime(yyyymmdd,'%Y%m%d').date()
         if yyyymmdd == None:
@@ -67,13 +68,19 @@ def show_countdown_days(yyyymmdd=None):
 @app.route('/rsvp/', methods=['GET','POST'])
 @support_jsonp
 def rsvp():
-	#curl -i -H "Content-tjson" -X GET -d {"firstName":"Tommy", "lastName":"Wu","attending":true} http://localhost:5000/rsvp/
-	if request.mimetype == 'application/json' and request.method == 'GET':
-		return request.data+'\n'
+    a = []
+    # print request.args
 
-	guest = mongo.db.guest.find_one({'firstName':'Tommy'})
-	print guest
-	return str(guest)
+    if request.args:
+        return request.args
+    # print request.headers['Accept']
+    for guest in collection.find():
+        a.append(guest)
+    
+    return render_template('rsvp.html', guestList=a)
+    # return str(collection)
+
+#curl -i -H "Content-tjson" -X GET -d {"firstName":"Tommy", "lastName":"Wu","attending":true} http://localhost:5000/rsvp/
 
 @app.route('/email/')
 @support_jsonp
