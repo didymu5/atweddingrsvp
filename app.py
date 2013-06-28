@@ -57,12 +57,12 @@ def hello():
 @support_jsonp
 def show_countdown_days(yyyymmdd=None):
 # curl -i -H "Content-type: application/json" -X POST -d 'firstName=Tommy&lastName=Wu&attending=true' http://localhost:5000/rsvp/
-    if request.headers['Accept'] in 'application/json':
-        return jsonify(status=200, daysleft=days_until())
-    else:
-        # print datetime.datetime.strptime(yyyymmdd,'%Y%m%d').date()
-        if yyyymmdd == None:
-            return jsonify({'dayslefts': days_until()})
+    # if request.headers['Accept'] in 'application/json':
+    #     return jsonify(status=200, daysleft=days_until())
+    # else:
+    #     # print datetime.datetime.strptime(yyyymmdd,'%Y%m%d').date()
+    #     if yyyymmdd == None:
+    return jsonify({'dayslefts': days_until()})
 
 
 @app.route('/rsvp/', methods=['GET','POST'])
