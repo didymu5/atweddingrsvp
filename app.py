@@ -62,7 +62,7 @@ def show_countdown_days(yyyymmdd=None):
     # else:
     #     # print datetime.datetime.strptime(yyyymmdd,'%Y%m%d').date()
     #     if yyyymmdd == None:
-    return jsonify({'dayslefts': days_until()})
+    return jsonify({'daysleft': days_until()})
 
 
 @app.route('/rsvp/', methods=['GET','POST'])
