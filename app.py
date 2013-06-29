@@ -135,11 +135,11 @@ def rsvp():
 def edit_doc(obj_id):
     return obj_id
 
-@app.route('/killdata/')
-def killall():
-    test = collection.remove()
-    print test
-    return 'data killed'
+# @app.route('/killdata/')
+# def killall():
+#     test = collection.remove()
+#     print test
+#     return 'data killed'
 
 @app.route('/email/')
 @support_jsonp
