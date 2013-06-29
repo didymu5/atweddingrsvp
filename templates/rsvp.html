@@ -10,11 +10,7 @@
 </head>
 <body>
 <h2>A list of who's RSVPed</h2>
-<ul>
-{% for guest in guestList %}
-	<li> {{guest}} </li>
-{% endfor %}
-</ul>
+<div class="row">
 <div class="large-12 columns">
 <table class="table">
   <thead>
@@ -30,19 +26,35 @@
   </thead>
   <tbody>
 {% for guest in guestList %}
-    <tr>
+    <tr id="{{ guest._id }}">
       <td>{{ loop.index }}</td>
       <td>{{guest.firstname}}</td>
       <td>{{guest.lastname}}</td>
-      <td>{% if guest.isAttending %} yes {% else %} no {% endif %}</td>
+      <td>{% if guest.isAttending == 'true' %} yes {% else %} no {% endif %}</td>
       <td>
-      	{{guest.email}}
+        {{guest.email}}
       </td>
       <td>{{ guest.guestOf }} </td>
       <td>{{ guest.timeStamp.strftime('%D %T') }}</td>
     </tr>
    {% endfor %}
-  </tbody></div>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="row">
+<div class="large-12 columns">
+<h4>Raw Data</h4>
+  <ul>
+{% for guest in guestList %}
+  <li> {{guest}} </li>
+{% endfor %}
+</ul>
+</div></div>
+
+
+
+
 </table>
 </body>
 </html>
