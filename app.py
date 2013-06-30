@@ -93,7 +93,7 @@ def rsvp():
             
             if obj_id and aperson['isAttending'] == 'true':
                 msg = Message('Thank you for RSVPing', sender = 'tommy.angico@gmail.com', recipients=[host_email])
-                msg.body = "So happy that you are coming! \n A few details to remind you: \n\nCeremony @ 3pm - Messiah Lutheran Church - 4861 Liverpool St Yorba Linda, CA 92886 \n\n Cocktail hour and reception @5pm - Summit House - 2000 E Bastanchury Rd, Fullerton, CA 92835 \n\n\n Please feel free to email us if you have any questions! Check back at wedding.happygrunt.com for updates \n\n\n Looking forward to celebrating with you!"       
+                msg.body = "So happy that you are coming!\nA few details to remind you:\n\nCeremony @ 3pm - Messiah Lutheran Church - 4861 Liverpool St Yorba Linda, CA 92886\n\nCocktail hour and reception @5pm - Summit House - 2000 E Bastanchury Rd, Fullerton, CA 92835 \n\n\n Please feel free to email us if you have any questions! Check back at wedding.happygrunt.com for updates\n\n\nLooking forward to celebrating with you!"       
                 mail.send(msg)
             
 
