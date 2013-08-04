@@ -80,9 +80,9 @@ def rsvp():
         # catches just the first host
         if request.args.get('email_of_host'):
             aperson = {'email':request.args.get('email_of_host'), 'guestOf':''}
-            aperson['firstname'] = request.args.get('firstname')
+            aperson['firstname'] = request.args.get('firstname').title().strip()
             aperson['timeStamp'] = datetime.now()
-            aperson['lastname'] = request.args.get('lastname')
+            aperson['lastname'] = request.args.get('lastname').title().strip()
             aperson['isAttending'] = request.args.get('is_attending')
             print '\n'
             print aperson
