@@ -12,8 +12,8 @@ import time
 app = Flask(__name__)
 
 
-mURI = 'mongodb://wed_us:iloveangela@dharma.mongohq.com:10035/app16186982'
-app.config['SECRET_KEY'] = 'ILOVEYOUangela'
+mURI = ''
+app.config['SECRET_KEY'] = 'xxx'
 client = MongoClient(mURI)
 
 db = client.app16186982
@@ -57,12 +57,6 @@ def hello():
 @app.route('/countdown/<yyyymmdd>', methods=['GET'])
 @support_jsonp
 def show_countdown_days(yyyymmdd=None):
-# curl -i -H "Content-type: application/json" -X POST -d 'firstName=Tommy&lastName=Wu&attending=true' http://localhost:5000/rsvp/
-    # if request.headers['Accept'] in 'application/json':
-    #     return jsonify(status=200, daysleft=days_until())
-    # else:
-    #     # print datetime.datetime.strptime(yyyymmdd,'%Y%m%d').date()
-    #     if yyyymmdd == None:
     return jsonify({'daysleft': days_until()})
 
 
@@ -70,10 +64,9 @@ def show_countdown_days(yyyymmdd=None):
 @support_jsonp
 def rsvp():
     a = []
-    sender='tommy.angico@gmail.com'
+    sender='ddd@gmail.com'
     host_email = ''
-    # print request.args
-# {u'email': u'cord.of.three@gmail.com', u'firstname': u'Angela', u'isAttending': True, u'lastname': u'Hsieh', u'timeStamp': datetime.datetime(2013, 6, 27, 16, 1, 58, 534000), u'guestOf': u'', u'_id': ObjectId('51ccbbedb181d7b90ccbf74c')}
+    
     if request.args:
         alist = []
         
@@ -129,7 +122,6 @@ def rsvp():
     return render_template('rsvp.html', guestList=a)
     # return str(collection)
 
-#curl -i -H "Content-tjson" -X GET -d {"firstName":"Tommy", "lastName":"Wu","attending":true} http://localhost:5000/rsvp/
 @app.route('/edit/')
 @app.route('/edit/<int:obj_id>')
 def edit_doc(obj_id):
@@ -146,10 +138,7 @@ def edit_doc(obj_id):
 def send_email():
 	# b1e78df7be8c36337dd3197d03b16d10
 	if request.method == 'GET':
-		# msg = Message('Hello there', sender=("Angela & Tommy", "tommg.angico@gmail.com"), recipients=['wu.thomas@gmail.com'])
-		# msg.body = "This is the email body"
-		# mail.send(msg)
-		# print request['headers']+'..................'
+	
 		return jsonify(msg='it works')
 	print request.mimetype
 
